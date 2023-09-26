@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "752293218215",
+    "project_id": "batex-15e60",
+    "storage_bucket": "batex-15e60.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:752293218215:android:ea473d79fbae7a3bbc9882",
+        "android_client_info": {
+          "package_name": "com.example.expense_tracker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "752293218215-v47a3rj6cotm29oc0op2c111luqp1g82.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBCHYNTSRQD3qlCXyTfdIwAZ4C_GlGgzu4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "752293218215-v47a3rj6cotm29oc0op2c111luqp1g82.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "752293218215-20e58to82uagp1cdnmtv9ndjso31edps.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.expenseTracker"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
