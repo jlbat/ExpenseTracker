@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import './authService.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -8,6 +9,9 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login>{
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,27 +19,27 @@ class _LoginState extends State<Login>{
         padding: const EdgeInsets.symmetric(vertical: 30),
         width: double.infinity,
         decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            colors: [
-              Color(0x212121FF),
-              Color(0x616161FF),
-              Color(0x9E9E9EFF)
-            ]
-          )
+            gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                colors: [
+                  Color(0x212121FF),
+                  Color(0x616161FF),
+                  Color(0x9E9E9EFF)
+                ]
+            )
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             const SizedBox(height: 80,),
             const Padding(padding: EdgeInsets.only(left: 20, bottom: 40),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Text("Login", style: TextStyle(color: Colors.white, fontSize: 50),),
-                  SizedBox(height: 10,),
-                  Text("Welcome Back", style: TextStyle(color: Colors.white, fontSize: 20),),
-                ]
+              child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text("Login", style: TextStyle(color: Colors.white, fontSize: 50),),
+                    SizedBox(height: 10,),
+                    Text("Welcome Back", style: TextStyle(color: Colors.white, fontSize: 20),),
+                  ]
               ),
             ),
             Expanded(
@@ -45,80 +49,94 @@ class _LoginState extends State<Login>{
                   height: MediaQuery.of(context).size.height,
                   padding: const EdgeInsets.symmetric(),
                   decoration: const BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.all(Radius.circular(20))
+                      color: Colors.white,
+                      borderRadius: BorderRadius.all(Radius.circular(20))
                   ),
                   child: Padding(
-                    padding: const EdgeInsets.all(20),
-                    child: SingleChildScrollView(
-                      child: Column(
-                        children: <Widget>[
-                          const SizedBox(height: 100,),
-                          Container(
-                            padding: const EdgeInsets.all(20),
-                            decoration: const BoxDecoration(
-                              color: Colors.white,
-                              boxShadow: [BoxShadow(
-                                  color: Color.fromRGBO(97, 97, 255, .3),
-                                  blurRadius: 20,
-                                  offset: Offset(0, 10)
-                              )],
-                              borderRadius: BorderRadius.all(Radius.circular(20)),
-                            ),
-                            child: TextFormField(
-                              style: const TextStyle(color: Color(0x9E9E9EFF)),
-                              cursorColor: const Color(0x9E9E9EFF),
-                              decoration: const InputDecoration(
-                                  labelText: 'Enter your username : ',
-                                  labelStyle: TextStyle(color: Color(0x9E9E9EFF))
+                      padding: const EdgeInsets.all(20),
+                      child: SingleChildScrollView(
+                        child: Column(
+                          children: <Widget>[
+                            const SizedBox(height: 100,),
+                            Container(
+                              padding: const EdgeInsets.all(20),
+                              decoration: const BoxDecoration(
+                                color: Colors.white,
+                                boxShadow: [BoxShadow(
+                                    color: Color.fromRGBO(97, 97, 255, .3),
+                                    blurRadius: 20,
+                                    offset: Offset(0, 10)
+                                )],
+                                borderRadius: BorderRadius.all(Radius.circular(20)),
                               ),
-                            ),
-                          ),
-                          const SizedBox(height: 30,),
-                          Container(
-                            padding: const EdgeInsets.all(20),
-                            decoration: const BoxDecoration(
-                              color: Colors.white,
-                              boxShadow: [BoxShadow(
-                                  color: Color.fromRGBO(97, 97, 255, .3),
-                                  blurRadius: 20,
-                                  offset: Offset(0, 10)
-                              )],
-                              borderRadius: BorderRadius.all(Radius.circular(20)),
-                            ),
-                            child: TextFormField(
-                              style: const TextStyle(color: Color(0x9E9E9EFF)),
-                              cursorColor: const Color(0x9E9E9EFF),
-                              decoration: const InputDecoration(
-                                  labelText: 'Enter your Password : ',
-                                  labelStyle: TextStyle(color: Color(0x9E9E9EFF))
-                              ),
-                            ),
-                          ),
-                          const SizedBox(height: 15,),
-                          TextButton(onPressed: (){}, child: const Text('Forgot Password', style: TextStyle(color: Color(0x9E9E9EFF)))),
-                          const SizedBox(height: 20,),
-                          AnimatedContainer(
-                            duration: const Duration(seconds: 2),
-                            width: 250,
-                            height: 55,
-                            margin: const EdgeInsets.symmetric(horizontal: 50),
-                            child: Material(
-                              borderRadius: BorderRadius.circular(25),
-                              color: Colors.deepPurple,
-                              child: InkWell(
-                                onTap: () {},
-                                child: const Center(
-                                  child: Text('Login', style: TextStyle(color: Colors.white, fontSize: 20)),
+                              child: TextFormField(
+                                controller: _emailController,
+                                style: const TextStyle(color: Color(0x9E9E9EFF)),
+                                cursorColor: const Color(0x9E9E9EFF),
+                                decoration: const InputDecoration(
+                                    labelText: 'Enter your email : ',
+                                    labelStyle: TextStyle(color: Color(0x9E9E9EFF))
                                 ),
                               ),
                             ),
-                          ),
-                          const SizedBox(height: 100,),
+                            const SizedBox(height: 30,),
+                            Container(
+                              padding: const EdgeInsets.all(20),
+                              decoration: const BoxDecoration(
+                                color: Colors.white,
+                                boxShadow: [BoxShadow(
+                                    color: Color.fromRGBO(97, 97, 255, .3),
+                                    blurRadius: 20,
+                                    offset: Offset(0, 10)
+                                )],
+                                borderRadius: BorderRadius.all(Radius.circular(20)),
+                              ),
+                              child: TextFormField(
+                                controller: _passwordController,
+                                style: const TextStyle(color: Color(0x9E9E9EFF)),
+                                cursorColor: const Color(0x9E9E9EFF),
+                                decoration: const InputDecoration(
+                                    labelText: 'Enter your Password : ',
+                                    labelStyle: TextStyle(color: Color(0x9E9E9EFF))
+                                ),
+                              ),
+                            ),
+                            const SizedBox(height: 15,),
+                            TextButton(onPressed: (){}, child: const Text('Forgot Password', style: TextStyle(color: Color(0x9E9E9EFF)))),
+                            const SizedBox(height: 20,),
+                            AnimatedContainer(
+                              duration: const Duration(seconds: 2),
+                              width: 250,
+                              height: 55,
+                              margin: const EdgeInsets.symmetric(horizontal: 50),
+                              child: Material(
+                                borderRadius: BorderRadius.circular(25),
+                                color: Colors.deepPurple,
+                                child: InkWell(
+                                  onTap: () async {
+                                    final message = await AuthService().login(email: _emailController.text, password: _passwordController.text);
+                                    if (message!.contains('Success')) {
+                                      print('Login Success');
+                                    } else {
+                                      print(message);
+                                    }
 
-                        ],
-                      ),
-                    )
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                        content: Text(message),
+                                      ),
+                                    );
+                                  },
+                                  child: const Center(
+                                    child: Text('Login', style: TextStyle(color: Colors.white, fontSize: 20)),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(height: 100),
+                          ],
+                        ),
+                      )
                   ),
                 )
             )
