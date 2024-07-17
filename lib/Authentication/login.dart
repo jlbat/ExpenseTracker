@@ -43,7 +43,7 @@ class _LoginState extends State<Login>{
                   margin: const EdgeInsets.only(left: 15, right: 15),
                   width: MediaQuery.of(context).size.width * 0.95,
                   height: MediaQuery.of(context).size.height,
-                  padding: EdgeInsets.symmetric(),
+                  padding: const EdgeInsets.symmetric(),
                   decoration: const BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.all(Radius.circular(20))
@@ -53,9 +53,9 @@ class _LoginState extends State<Login>{
                     child: SingleChildScrollView(
                       child: Column(
                         children: <Widget>[
-                          SizedBox(height: 100,),
+                          const SizedBox(height: 100,),
                           Container(
-                            padding: EdgeInsets.all(20),
+                            padding: const EdgeInsets.all(20),
                             decoration: const BoxDecoration(
                               color: Colors.white,
                               boxShadow: [BoxShadow(
@@ -76,7 +76,7 @@ class _LoginState extends State<Login>{
                           ),
                           const SizedBox(height: 30,),
                           Container(
-                            padding: EdgeInsets.all(20),
+                            padding: const EdgeInsets.all(20),
                             decoration: const BoxDecoration(
                               color: Colors.white,
                               boxShadow: [BoxShadow(
@@ -102,13 +102,13 @@ class _LoginState extends State<Login>{
                             duration: const Duration(seconds: 2),
                             width: 250,
                             height: 55,
-                            margin: EdgeInsets.symmetric(horizontal: 50),
+                            margin: const EdgeInsets.symmetric(horizontal: 50),
                             child: Material(
                               borderRadius: BorderRadius.circular(25),
                               color: Colors.deepPurple,
                               child: InkWell(
                                 onTap: () {},
-                                child: Center(
+                                child: const Center(
                                   child: Text('Login', style: TextStyle(color: Colors.white, fontSize: 20)),
                                 ),
                               ),
