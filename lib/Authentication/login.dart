@@ -103,7 +103,7 @@ class _LoginState extends State<Login>{
                                     borderRadius: BorderRadius.all(Radius.circular(20)),
                                   ),
                                   child: TextFormField(
-                                    obscureText: isPasswordVisible,
+                                    obscureText: !isPasswordVisible,
                                     controller: _passwordController,
                                     style: const TextStyle(color: Color(0x9E9E9EFF)),
                                     cursorColor: const Color(0x9E9E9EFF),
@@ -112,8 +112,8 @@ class _LoginState extends State<Login>{
                                       labelStyle: const TextStyle(color: Color(0x9E9E9EFF)),
                                       suffixIcon: IconButton(
                                         icon: Icon(isPasswordVisible
-                                            ? Icons.visibility_off
-                                            : Icons.visibility),
+                                            ? Icons.visibility
+                                            : Icons.visibility_off),
                                         onPressed: () {
                                           setState(
                                                 () {
