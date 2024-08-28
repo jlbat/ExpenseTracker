@@ -1,11 +1,12 @@
 import 'package:alert_banner/exports.dart';
-import 'package:expense_tracker/Home/home.dart';
+import 'package:expense_tracker/Components/mainpage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../Common/alertBanner.dart';
 import './authService.dart';
 
 class Login extends StatefulWidget {
+  static String id = 'login';
   const Login({Key? key}) : super(key: key);
 
   @override
@@ -82,11 +83,12 @@ class _LoginState extends State<Login>{
                                   ),
                                   child: TextFormField(
                                     controller: _emailController,
-                                    style: const TextStyle(color: Color(0x9E9E9EFF)),
+                                    style: const TextStyle(color: Colors.deepPurple),
                                     cursorColor: const Color(0x9E9E9EFF),
                                     decoration: const InputDecoration(
+                                        border: InputBorder.none,
                                         labelText: 'Enter your email : ',
-                                        labelStyle: TextStyle(color: Color(0x9E9E9EFF))
+                                        labelStyle: TextStyle(color: Colors.deepPurple)
                                     ),
                                   ),
                                 ),
@@ -105,11 +107,12 @@ class _LoginState extends State<Login>{
                                   child: TextFormField(
                                     obscureText: !isPasswordVisible,
                                     controller: _passwordController,
-                                    style: const TextStyle(color: Color(0x9E9E9EFF)),
+                                    style: const TextStyle(color: Colors.deepPurple),
                                     cursorColor: const Color(0x9E9E9EFF),
                                     decoration: InputDecoration(
+                                      border: InputBorder.none,
                                       labelText: 'Enter your Password : ',
-                                      labelStyle: const TextStyle(color: Color(0x9E9E9EFF)),
+                                      labelStyle: const TextStyle(color: Colors.deepPurple),
                                       suffixIcon: IconButton(
                                         icon: Icon(isPasswordVisible
                                             ? Icons.visibility
@@ -126,7 +129,7 @@ class _LoginState extends State<Login>{
                                   ),
                                 ),
                                 const SizedBox(height: 15,),
-                                TextButton(onPressed: (){}, child: const Text('Forgot Password', style: TextStyle(color: Color(0x9E9E9EFF)))),
+                                TextButton(onPressed: (){}, child: const Text('Forgot Password', style: TextStyle(color: Colors.deepPurpleAccent))),
                                 const SizedBox(height: 20,),
                                 AnimatedContainer(
                                   duration: const Duration(seconds: 2),
@@ -140,10 +143,7 @@ class _LoginState extends State<Login>{
                                       onTap: () async {
                                         final message = await AuthService().login(email: _emailController.text, password: _passwordController.text);
                                         if (message!.contains('Success')) {
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(builder: (context) => const Home()),
-                                          );
+                                          Navigator.pushNamed(context, Mainpage.id);
                                           
                                           showAlertBanner(
                                               context,
