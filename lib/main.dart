@@ -1,4 +1,7 @@
+import 'dart:async';
 import 'package:expense_tracker/Authentication/login.dart';
+import 'package:expense_tracker/Components/mainpage.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'package:flutter/material.dart';
@@ -9,11 +12,35 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class MyApp extends StatefulWidget {
+  // This widget is the root of your application.
+
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+
+  late StreamSubscription<User?> user;
+  void initState() {
+    super.initState();
+    user = FirebaseAuth.instance.authStateChanges().listen((user) {
+      if (user == null) {
+        print('User is currently signed out!');
+      } else {
+        print('User is signed in!');
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    user.cancel();
+    super.dispose();
+  }
 
   // This widget is the root of your application.
   @override
@@ -25,11 +52,23 @@ class MyApp extends StatelessWidget {
       ],
     );
     return MaterialApp(
+      /// check if user is signed (Open Home page ) if user is not signed in (open login page)
+      initialRoute: FirebaseAuth.instance.currentUser == null ? Login.id : Mainpage.id,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.purple,
+        useMaterial3: true
       ),
-      home: const Login(),
+      darkTheme: ThemeData(
+        primarySwatch: Colors.deepPurple,
+        useMaterial3: true
+      ),
+      ///key value pair
+      routes: {
+        Mainpage.id: (context) => const Mainpage(),
+        Login.id: (context) => const Login(),
+      },
+      home: const Login()
     );
   }
 }

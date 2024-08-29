@@ -23,4 +23,15 @@ class AuthService {
       return e.toString();
     }
   }
+
+  Future<String?> logout() async{
+    try {
+      await FirebaseAuth.instance.signOut();
+      return 'Success';
+    } on FirebaseAuthException catch (e) {
+      return e.message;
+    } catch (e) {
+      return e.toString();
+    }
+  }
 }
